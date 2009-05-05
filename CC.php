@@ -18,13 +18,13 @@ if( !defined( 'MEDIAWIKI' ) )
  * @todo document
  * @ingroup Skins
  */
-class SkinCC5 extends SkinTemplate {
+class SkinCC extends SkinTemplate {
 	/** Using monobook. */
 	function initPage( OutputPage $out ) {
 		parent::initPage( $out );
-		$this->skinname  = 'cc5';
-		$this->stylename = 'cc5';
-		$this->template  = 'CC5';
+		$this->skinname  = 'cc';
+		$this->stylename = 'cc';
+		$this->template  = 'CC';
 
 	}
 	
@@ -34,7 +34,7 @@ class SkinCC5 extends SkinTemplate {
  * @todo document
  * @ingroup Skins
  */
-class CC5 extends QuickTemplate {
+class CC extends QuickTemplate {
 		var $skin;
 
 	function cleanTitle($whichTitle = 'title') {
@@ -85,8 +85,8 @@ class CC5 extends QuickTemplate {
     <script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/animation/animation-min.js"></script> 
     <script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/container/container-min.js"></script>
     
-    <link rel="stylesheet" type="text/css" media="screen" href="<?php $this->text('stylepath') ?>/cc5/standard.css" />
-    <script type="text/javascript" src="<?php $this->text('stylepath') ?>/cc5/site.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="<?php $this->text('stylepath') ?>/cc/standard.css" />
+    <script type="text/javascript" src="<?php $this->text('stylepath') ?>/cc/site.js"></script>
 
 		<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath' ) ?>/common/wikibits.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"><!-- wikibits js --></script>
 		<!-- Head Scripts -->
