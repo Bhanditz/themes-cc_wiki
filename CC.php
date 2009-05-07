@@ -231,7 +231,7 @@ class CC extends QuickTemplate {
            </div>
          </form>
          <?php if ($this->data['personal_urls']['login']) { ?>
-         <span><a href="/index.php?title=Special:Userlogin&amp;returnto=Documentation">Log in / create account</a></span>
+         <span><a href="/index.php?title=Special:Userlogin">Log in / create account</a></span>
          <span>(<a href="/Special:OpenIDLogin">OpenID</a>)</span>
          <?php } ?>
 	   </div>
