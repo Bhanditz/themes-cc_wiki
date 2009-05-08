@@ -26,7 +26,8 @@
 .block img { border: 0; }
 .block img.feature { display: block; }
 .block img.commoner { margin-right: 10px; margin-left: 0; padding: 3px; border: 1px solid #e3e3e3; }
-.block ul, .block ol { margin-bottom: 15px; padding-left: 2em;}
+.block ul, .block ol { padding-left: 2em;}
+.block li ul { margin-top: 15px; }
 .block li { padding-bottom: 10px; }
 .block ol ol { list-style-type: lower-roman; }
 .block .publish-pics { float: left; margin-right: 10px; margin-bottom: 25px; padding: 3px; border: 1px solid #ccc; }
