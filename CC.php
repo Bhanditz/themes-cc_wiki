@@ -270,6 +270,9 @@ class CC extends QuickTemplate {
    	       ?><li><a href="<?php echo htmlspecialchars($action['href']) ?>"><?php
    	       echo htmlspecialchars($action['text']) ?></a></li><?php
    	     } ?>
+          <li><a href="http://creativecommons.org/policies/">Policies</a></li>
+          <li><a href="http://creativecommons.org/privacy/">Privacy Policy</a></li>
+          <li><a href="http://creativecommons.org/terms/">Terms of Use</a></li>
        	  <?php if($this->data['lastmod'   ]) { ?><li><?php    $this->html('lastmod')    ?></li><?php } ?>
    	   </ul>
        <ul> 
