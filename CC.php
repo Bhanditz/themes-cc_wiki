@@ -191,7 +191,9 @@ class CC extends QuickTemplate {
          					echo htmlspecialchars($feed['href']) ?>"<?php echo $this->skin->tooltipAndAccesskey('feed-'.$key) ?>><?php echo htmlspecialchars($feed['text'])?></a>&nbsp;</span>
          					<?php } ?></li><?php
          		}
-                echo '<li><a href="http://wiki.creativecommons.org/Special:Recentchanges">' . $this->msg('recentchanges') . '</a></li>';
+                echo '<li><a href="http://wiki.creativecommons.org/Special:Recentchanges">';
+                $this->msg('recentchanges');
+                echo '</a></li>';
          		foreach( array('contributions', 'log', 'blockip', 'emailuser', 'upload', 'specialpages') as $special ) {
 
          			if($this->data['nav_urls'][$special]) {
