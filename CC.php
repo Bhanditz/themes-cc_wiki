@@ -86,7 +86,6 @@ class CC extends QuickTemplate {
     <script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/container/container-min.js"></script>
     
     <link rel="stylesheet" type="text/css" media="screen" href="<?php $this->text('stylepath') ?>/cc/standard.css" />
-    <script type="text/javascript" src="<?php $this->text('stylepath') ?>/cc/site.js"></script>
 
 		<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath' ) ?>/common/wikibits.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"><!-- wikibits js --></script>
 		<!-- Head Scripts -->
