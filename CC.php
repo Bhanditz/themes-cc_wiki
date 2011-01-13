@@ -84,7 +84,7 @@ class CC extends QuickTemplate {
     <script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/animation/animation-min.js"></script> 
     <script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/container/container-min.js"></script>
     
-    <link rel="stylesheet" type="text/css" media="screen" href="<?php $this->text('stylepath') ?>/cc/standard.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="<?php $this->text('stylepath') ?>/cc/style.css" />
 		<?php $this->html('csslinks') ?>
 
 		<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath' ) ?>/common/wikibits.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"><!-- wikibits js --></script>
@@ -110,23 +110,28 @@ class CC extends QuickTemplate {
 <body<?php if($this->data['body_ondblclick']) { ?> ondblclick="<?php $this->text('body_ondblclick') ?>"<?php } ?>
 <?php if($this->data['body_onload']) { ?> onload="<?php $this->text('body_onload') ?>"<?php } ?>
  class="yui-skin-sam ccPage mediawiki <?php $this->text('dir') ?> <?php $this->text('pageclass') ?> <?php $this->text('skinnameclass') ?>">
- <div id="globalWrapper">
-   <div id="headerWrapper" class="box">
-     <div id="headerLogo">
-       <h1><a href="/"><span>Creative Commons</span></a></h1>
-     </div>
-     <div id="headerNav">
-       <ul>
-         <li><a href="http://creativecommons.org/">CC Home</a></li>
-         <li><a href="/FAQ">FAQ</a></li>
-         <li><a href="/Case_Studies">Case Studies</a></li>
-         <li><a href="/Events">Events</a></li>
-         <li><a href="/Content_Directories">Content Directories</a></li>
-         <li><a href="/Developers">Developers</a></li>
-       </ul>
-     </div>
-   </div>
-   <div id="mainContent" class="box">
+
+	<a id="top"></a>
+	<div id="header" class="container_16">
+		<div class="container_16">
+			<div class="grid_16 ">
+				<h1 id="logo"><a href="/"><span>Creative Commons</span></a></h1>
+
+				<ul class="nav">
+					<li><a href="http://creativecommons.org/">CC Home</a></li>
+					<li><a href="/FAQ">FAQ</a></li>
+					<li><a href="/Case_Studies">Case Studies</a></li>
+					<li><a href="/Events">Events</a></li>
+					<li><a href="/Content_Directories">Content Directories</a></li>
+					<li><a href="/Developers">Developers</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div id="page">
+
+
      <!-- toolboxes -->
      <div id="pageNav">
 		   <ul id="t-page">
@@ -219,39 +224,42 @@ class CC extends QuickTemplate {
        </ul>
      </div>
      
-     <!-- page title -->
-     <div class="block" id="title">
- 	    <div class="sideitem">
-         <form method="get" id="searchform" action="<?php $this->text('searchaction') ?>">
-           <div>
-             <input type="text" 
-              <?php echo $this->skin->tooltipAndAccesskey('search');
-     					if( isset( $this->data['search'] ) ) {
-     						?> value="<?php $this->text('search') ?>" <?php } ?> 
-     				  name="search" id="search" class="inactive" /> <input type="submit" id="searchsubmit" value="Go" />
-           </div>
-         </form>
-         <?php if ($this->data['personal_urls']['login']) { ?>
-		 <span><a href="<?php echo $this->data['personal_urls']['login']['href']; ?>">Log in / create account</a></span>
-         <span>(<a href="/Special:OpenIDLogin">OpenID</a>)</span>
-         <?php } ?>
-	   </div>
-	   <div id="contentSub"><h3 class="category"><?php echo str_replace("&lt; ", "", $this->data['subtitle']) ?></h3></div> 
-       <?php
-       if ($this->data['title'] != 'Main Page') {
-		 ?><h2><?php /*$this->data['displaytitle']!=""?$this->html('title'):$this->text('title')*/ echo $this->cleanTitle();  ?></h2><?php
-       } else {
-         ?><h2>Creative Commons Wiki</h2><?php
-       }
-       ?>
-       
- 		</div>
-     
-    <!-- page content -->
-    <div id="contentPrimary" class="<?php if (!$hasToc) {?>noToc<?php }?>">
-	  <div class="block page">
+		<!-- page title -->
+		<div id="title" class="container_16">
+			<div class="grid_12">
+				<h3 class="category"><?php echo str_replace("&lt; ", "", $this->data['subtitle']) ?></h3>
+				<h1>
+				<?php
+				if ($this->data['title'] != 'Main Page') {
+					echo $this->cleanTitle();
+				} else {
+					?>Creative Commons Wiki<?php
+				}
+				?>	
+				</h1>
+			</div>
+			<div class="grid_4">
+				<form method="get" id="searchform" action="<?php $this->text('searchaction') ?>">
+					<div>
+						<input type="text" 
+						<?php echo $this->skin->tooltipAndAccesskey('search');
+						if( isset( $this->data['search'] ) ) {
+						?> value="<?php $this->text('search') ?>" <?php } ?> 
+						name="search" id="search" class="inactive" /> <input type="submit" id="searchsubmit" value="Go" />
+					</div>
+				</form>
+				<?php if ($this->data['personal_urls']['login']) { ?>
+				<span><a href="<?php echo $this->data['personal_urls']['login']['href']; ?>">Log in / create account</a></span>
+				<span>(<a href="/Special:OpenIDLogin">OpenID</a>)</span>
+				<?php } ?>
+
+			</div>
+		</div>
+		<!-- page content -->
+		<div id="content" class="<?php if (!$hasToc) {?>noToc<?php }?>">
+		  <div class="grid_14">
         <?php if($this->data['sitenotice']) { ?><div id="siteNotice"><?php $this->html('sitenotice') ?></div><?php } ?>
-    		
+
         <?php if($this->data['undelete']) { ?><div id="contentSub2"><?php     $this->html('undelete') ?></div><?php } ?>
    			<?php if($this->data['newtalk'] ) { ?><div class="usermessage"><?php $this->html('newtalk')  ?></div><?php } ?>
    			<!-- start content -->
@@ -260,39 +268,92 @@ class CC extends QuickTemplate {
    			<!-- end content -->
    			<?php if($this->data['dataAfterContent']) { $this->html ('dataAfterContent'); } ?>
       </div>
-    </div>
+		</div>
    </div>
    
-   <!-- footer -->
-   <div id="footer">
-     <div id="footerContent" class="box">
-        <ul>
-   	    <?php foreach($this->data['content_actions'] as $key => $action) {
-   	       ?><li><a href="<?php echo htmlspecialchars($action['href']) ?>"><?php
-   	       echo htmlspecialchars($action['text']) ?></a></li><?php
+  <!-- footer -->
+	<div id="footer">
+		<div class="container_16">
+			<div class="grid_2 alpha" id="top_link"><a href="#top">&#8682;</a></div>
+			<div class="clear"></div>
+			<div class="grid_6">
+				<h4>Creative Commons</h4>
+				<dl class="grid_2 alpha">
+					<dt><a href="http://creativecommons.org/about">About</a></li>
+					<dt><a href="http://creativecommons.org/who-uses-cc">Who Uses CC?</a></li>
+					<dt><a href="http://creativecommons.org/culture">Culture</a></li>
+					<dt><a href="http://creativecommons.org/education">Education</a></li>
+					<dt><a href="http://creativecommons.org/science">Science</a></li>
+				</dl>
+				<dl class="grid_2">
+					<dt><a href="http://creativecommons.org/weblog">Blog</a></li>
+					<dt><a href="http://wiki.creativecommons.org/Case_Studies">Case Studies</a></li>
+					<dt><a href="http://creativecommons.org/interviews">CC Talks With...</a></li>
+					<dt><a href="http://creativecommons.org/newsletter">Newsletters</a></li>
+					<dt><a href="http://creativecommons.org/about/downloads">Downloads</a></li>
+				</dl>
+				<dl class="grid_2 omega">
+					<dt><a href="http://creativecommons.org/affiliates">International</a></li>
+					<dt><a href="http://wiki.creativecommons.org/Events">Events</a></li>
+					<dt><a href="http://creativecommons.org/about/people">People</a></li>
+					<dt><a href="http://creativecommons.org/about/press">Press Room</a></li>
+					<dt><a href="http://creativecommons.org/contact">Contact</a></li>
+				</dl>
+			</div>
+			<div class="grid_2 prefix_1">
+				<h4>Licensing</h4>
+				<dl class="grid_2 alpha omega">
+					<dt><a href="http://creativecommons.org/licenses">The Licenses</a></li>
+					<dt><a href="http://creativecommons.org/choose">Choose License</a></li>
+					<dt><a href="http://wiki.creativecommons.org/FAQ">FAQ</a></li>
+					<dt><a href="http://search.creativecommons.org/">Find Content</a></li>
+					<dt><a href="http://wiki.creativecommons.org/Developers">Developers</a></li>
+				</dl>
+			</div>
+			<div class="grid_2 prefix_1 suffix_1">
+				<h4>Supporting CC</h4>
+				<dl class="grid_2 alpha omega">
+					<dt><a href="https://creativecommons.net/donate">Donate</a></li>
+					<dt><a href="https://creativecommons.net/store">Store</a></li>
+					<dt><a href="https://creativecommons.net/supporters">Supporters</a></li>
+					<dt><a href="https://creativecommons.net/corporate">Corporate Giving</a></li>
+					<dt><a href="https://creativecommons.net/figures">Facts &amp; Figures</a></li>
+				</dl>
+			</div>
+			<div class="grid_3 social alpha omega">
+				<dl class="social_links">
+					<dt><a href="https://creativecommons.net/civicrm/mailing/subscribe?reset=1&gid=121">Subscribe to Newsletter</a></li>
+					<dt class="fb"><iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fcreativecommons.org&amp;layout=button_count&amp;show_faces=false&amp;width=150&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:150px; height:21px;" allowTransparency="true"></iframe></li>
+					<dt><a href="http://twitter.com/creativecommons">Follow on Twitter</a></li>
+					<dt><a href="http://identi.ca/creativecommons">Follow on Identi.ca</a></li>
+				</dl>
+			</div>
+		</div>
+		<div class="container_16" id="footer_license">
+			<p class="grid_16">
+<?php foreach($this->data['content_actions'] as $key => $action) {
+   	       ?>&nbsp;&nbsp;&nbsp;<a href="<?php echo htmlspecialchars($action['href']) ?>"><?php
+   	       echo htmlspecialchars($action['text']) ?></a><?php
    	     } ?>
-          <li><a href="http://creativecommons.org/policies/">Policies</a></li>
-          <li><a href="http://creativecommons.org/privacy/">Privacy Policy</a></li>
-          <li><a href="http://creativecommons.org/terms/">Terms of Use</a></li>
-       	  <?php if($this->data['lastmod'   ]) { ?><li><?php    $this->html('lastmod')    ?></li><?php } ?>
-   	   </ul>
-       <ul> 
-    	  <?php if($this->data['about'     ]) { ?><li><?php      $this->html('about')      ?></li><?php } ?>
-       </ul>
-     </div>
-     <div id="footerLicense">
-       <p class="box">
-         <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">
-           <img src="http://i.creativecommons.org/l/by/3.0/88x31.png" alt="Creative Commons License" style="border:none;" height="31" width="88">
-         </a>
-         Except where otherwise <a class="subfoot" href="/policies#license">noted</a>, content on this site is<br/>
-         licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/" class="subfoot">Creative Commons
-         Attribution 3.0 License</a>
-       </p>
-    </div>
-   </div>
-   
- </div>
+       	 <?php if($this->data['lastmod']) { ?>&nbsp;&nbsp;&nbsp;<?php    $this->html('lastmod')  } ?>
+    	  <?php if($this->data['about']) { ?>&nbsp;&nbsp;&nbsp;<?php      $this->html('about') } ?>
+			</p>
+			<p class="grid_16">
+				<a href="http://creativecommons.org/policies">Policies</a>
+				&nbsp;&nbsp;&nbsp;<a href="http://creativecommons.org/privacy">Privacy</a>
+				&nbsp;&nbsp;&nbsp;<a href="http://creativecommons.org/terms">Terms of Use</a>
+			</p>
+
+			<p class="grid_16">
+				<a rel="license" href="http://creativecommons.org/licenses/by/3.0/">
+					<img src="http://i.creativecommons.org/l/by/3.0/80x15.png" alt="Creative Commons License" style="border:none;" height="15" width="80" />
+				</a>
+				Except where otherwise <a class="subfoot" href="/policies#license">noted</a>, content on this site is
+				licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/" class="subfoot">Creative Commons
+				Attribution 3.0 License</a>
+			</p>					
+		</div>
+	</div>
 
 <!-- Google Analytics -->
 <script type="text/javascript">
