@@ -1070,6 +1070,7 @@ pre {
 }
 
 #toc {
+	float: right;
 	width: 220px;
 	padding-top: 1.39em;
 	margin-right: -120px;
