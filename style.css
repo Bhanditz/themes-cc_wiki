@@ -1096,6 +1096,11 @@ pre {
 	margin-top: 0;
 }
 
+#toc li {
+	margin-left: 0;
+	padding-left: 0;
+}
+
 #toc li.toclevel-2, #toc li.toclevel-3, #toc li.toclevel-4 {
 	margin-left: 1em !important;
 }
