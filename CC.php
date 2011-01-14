@@ -79,8 +79,6 @@ class CC extends QuickTemplate {
 
 		<?php print Skin::makeGlobalVariablesScript( $this->data ); ?>
 
-		<link rel="shortcut icon" href="<?php $this->text('stylepath') ?>/cc/favicon.ico" type="image/x-icon" /> 
-
     <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.5.2/build/container/assets/skins/sam/container.css" /> 
     <script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/yahoo-dom-event/yahoo-dom-event.js"></script> 
     <script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/animation/animation-min.js"></script> 
