@@ -132,8 +132,11 @@ class CC extends QuickTemplate {
 	<div id="page">
 
 
+     
+		<!-- page title -->
+		<div id="title" class="container_16">
      <!-- toolboxes -->
-     <div id="pageNav">
+     <div id="pageNav" class="grid_16">
 		   <ul id="t-page">
    	<?php		foreach($this->data['content_actions'] as $key => $tab) {
    					echo '
@@ -223,9 +226,6 @@ class CC extends QuickTemplate {
          ?>
        </ul>
      </div>
-     
-		<!-- page title -->
-		<div id="title" class="container_16">
 			<div class="grid_12">
 				<h3 class="category"><?php echo str_replace("&lt; ", "", $this->data['subtitle']) ?></h3>
 				<h1>
@@ -238,7 +238,7 @@ class CC extends QuickTemplate {
 				?>	
 				</h1>
 			</div>
-			<div class="grid_4">
+			<div class="grid_4" id="search_n_log">
 				<form method="get" id="searchform" action="<?php $this->text('searchaction') ?>">
 					<div>
 						<input type="text" 
@@ -256,8 +256,9 @@ class CC extends QuickTemplate {
 			</div>
 		</div>
 		<!-- page content -->
-		<div id="content" class="<?php if (!$hasToc) {?>noToc<?php }?>">
-		  <div class="grid_14">
+		<div id="content" class="">
+			<div class="container_16">
+			  <div class="grid_14">
         <?php if($this->data['sitenotice']) { ?><div id="siteNotice"><?php $this->html('sitenotice') ?></div><?php } ?>
 
         <?php if($this->data['undelete']) { ?><div id="contentSub2"><?php     $this->html('undelete') ?></div><?php } ?>
@@ -266,10 +267,10 @@ class CC extends QuickTemplate {
    			<?php $this->html('bodytext') ?>
    			<?php if($this->data['catlinks']) { $this->html('catlinks'); } ?>
    			<!-- end content -->
-   			<?php if($this->data['dataAfterContent']) { $this->html ('dataAfterContent'); } ?>
-      </div>
+   			<?php if($this->data['dataAfterContent']) { $this->html ('dataAfterContent'); } ?>	
+			</div>
 		</div>
-   </div>
+	</div>
    
   <!-- footer -->
 	<div id="footer">
@@ -335,8 +336,8 @@ class CC extends QuickTemplate {
    	       ?>&nbsp;&nbsp;&nbsp;<a href="<?php echo htmlspecialchars($action['href']) ?>"><?php
    	       echo htmlspecialchars($action['text']) ?></a><?php
    	     } ?>
-       	 <?php if($this->data['lastmod']) { ?>&nbsp;&nbsp;&nbsp;<?php    $this->html('lastmod')  } ?>
-    	  <?php if($this->data['about']) { ?>&nbsp;&nbsp;&nbsp;<?php      $this->html('about') } ?>
+       	 <?php if($this->data['lastmod']) { ?>&nbsp;&nbsp;&nbsp;<?php    $this->html('lastmod');  } ?>
+    	  <?php if($this->data['about']) { ?>&nbsp;&nbsp;&nbsp;<?php      $this->html('about'); } ?>
 			</p>
 			<p class="grid_16">
 				<a href="http://creativecommons.org/policies">Policies</a>

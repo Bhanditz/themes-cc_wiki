@@ -709,7 +709,7 @@ ul.nav li:last-child {
 	margin-right: 0;
 }
 
-#page {
+#page, #content, .container_16 {
   position: relative;
 }
 
@@ -749,6 +749,10 @@ ul.nav li:last-child {
 #title h1 {
 	font-size: 45px;
 	margin-bottom: 0;
+}
+
+#search_n_log {
+  margin-top: 40px;
 }
 
 #content .alt, .alt_1 {
@@ -1026,13 +1030,10 @@ pre {
 
 /* Wiki Styles */
 #pageNav {
-	position: absolute;
-	top: -85px;
-	left: 31px;
 	font-size: 0.9em;
 	padding-bottom: 0.125em;
 	border-bottom: 1px solid #e0e0e0;
-	width: 935px;
+  overflow-y: auto;
 }
 
 #pageNav ul {
