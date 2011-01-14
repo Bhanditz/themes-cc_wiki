@@ -1070,14 +1070,18 @@ pre {
 }
 
 #toc {
-	position: absolute;
-	top: 1em;
-	right: 0px;
-	width: 230px;
+	width: 220px;
 	padding-top: 1.39em;
-	padding-left: 1em;
+	margin-right: -120px;
 	font-size: 90%;
-	background-color: #f6f6f6;
+	background-color: #f0f0f0;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
+#toc td {
+	padding: 10px;
 }
 
 #toc ul {
@@ -1092,11 +1096,6 @@ pre {
 
 #toc li.toclevel-2, #toc li.toclevel-3, #toc li.toclevel-4 {
 	margin-left: 1em !important;
-}
-
-.noToc {
-	width: 800px !important;
-	padding-right: 0 !important;
 }
 
 
