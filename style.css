@@ -742,7 +742,7 @@ ul.nav li:last-child {
 }
 
 #title {
-	padding: 15px 0;
+	padding: 0 0 10px 0;
 	border-bottom: 1px solid #ddd;
 	margin-bottom: 25px;
 }
@@ -1031,7 +1031,8 @@ pre {
 /* Wiki Styles */
 #pageNav {
 	font-size: 0.9em;
-	padding-bottom: 0.125em;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
 	border-bottom: 1px solid #e0e0e0;
   overflow-y: auto;
 }
@@ -1040,13 +1041,12 @@ pre {
 	float: left;
 /*	clear: both;*/
 	list-style-type: none;
-	padding: 0 0 0.35em 16px;
+	padding: 0 0 2px 0;
 	margin: 0;
 }
 
 #pageNav ul li {
 	display: inline;
-	padding-right: 1em;
 }
 
 #pageNav, #pageNav a {
