@@ -63,14 +63,32 @@ class CC extends QuickTemplate {
 		// Suppress warnings to prevent notices about missing indexes in $this->data
 		wfSuppressWarnings();
 
+    // adaptor code for cc-wp theme
+    if ( ! function_exists('bloginfo') ) {
+        function bloginfo ($param) {
+            if ( $param == 'home' )
+                echo 'http://creativecommons.org';
+            if ( $param == 'stylesheet_directory' ) {
+                echo '/skins/cc/cc-wp';
+                // echo $this->text('stylepath') . '/cc-wp';
+            }
+        }
+    }
+    if ( ! function_exists('get_http_security') ) {
+        function get_http_security () {
+            echo 'https';
+        }
+    }
+    include 'cc-wp/meta.php';
+    include 'cc-wp/header-doctype.php';
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="<?php $this->text('xhtmldefaultnamespace') ?>" <?php
+<html <?php
 	foreach($this->data['xhtmlnamespaces'] as $tag => $ns) {
 		?>xmlns:<?php echo "{$tag}=\"{$ns}\" ";
 	} ?>xml:lang="<?php $this->text('lang') ?>" lang="<?php $this->text('lang') ?>" dir="<?php $this->text('dir') ?>">
 	<head>
 		<meta http-equiv="Content-Type" content="<?php $this->text('mimetype') ?>; charset=<?php $this->text('charset') ?>" />
+        <?php include 'cc-wp/header-common.php'; ?>
 		<?php $this->html('headlinks')?> 
 		<title><?php if ($this->data['title'] != 'Main Page') { echo $this->cleanTitle('pagetitle'); ?><?php } else { ?>Creative Commons Wiki <?php } ?></title>
 		<?php $this->html('csslinks') ?>
@@ -110,22 +128,12 @@ class CC extends QuickTemplate {
 <body<?php if($this->data['body_ondblclick']) { ?> ondblclick="<?php $this->text('body_ondblclick') ?>"<?php } ?>
 <?php if($this->data['body_onload']) { ?> onload="<?php $this->text('body_onload') ?>"<?php } ?>
  class="yui-skin-sam ccPage mediawiki <?php $this->text('dir') ?> <?php $this->text('pageclass') ?> <?php $this->text('skinnameclass') ?>">
- <div id="globalWrapper">
-   <div id="headerWrapper" class="box">
-     <div id="headerLogo">
-       <h1><a href="/"><span>Creative Commons</span></a></h1>
-     </div>
-     <div id="headerNav">
-       <ul>
-         <li><a href="http://creativecommons.org/">CC Home</a></li>
-         <li><a href="/FAQ">FAQ</a></li>
-         <li><a href="/Case_Studies">Case Studies</a></li>
-         <li><a href="/Events">Events</a></li>
-         <li><a href="/Content_Directories">Content Directories</a></li>
-         <li><a href="/Developers">Developers</a></li>
-       </ul>
-     </div>
-   </div>
+	<div id="container">
+        <?php include 'cc-wp/page-nav.php'; ?>
+        <div id="main" role="main">
+            <div class="container">
+                <div class="sixteen columns">
+
    <div id="mainContent" class="box">
      <!-- toolboxes -->
      <div id="pageNav">
@@ -167,8 +175,8 @@ class CC extends QuickTemplate {
        <?php } ?>
        
        <ul id="t-toolbox">
-         <?php
-         		if($this->data['notspecialpage']) { ?>
+
+         		<?php if($this->data['notspecialpage']) { ?>
          				<li id="t-whatlinkshere"><a href="<?php
          				echo htmlspecialchars($this->data['nav_urls']['whatlinkshere']['href'])
          				?>"<?php echo $this->skin->tooltipAndAccesskey('t-whatlinkshere') ?>><?php $this->msg('whatlinkshere') ?></a></li>
@@ -260,35 +268,28 @@ class CC extends QuickTemplate {
       </div>
     </div>
    </div>
+
+
+
+       <ul id="footmeta">
+    	  <?php if($this->data['about'     ]) { ?><li><?php      $this->html('about')      ?></li><?php } ?>
+          <?php
+       	  if($this->data['lastmod'   ]) { ?><li><?php    $this->html('lastmod')    ?></li><?php } ?>
+       </ul>
+                </div>
+            </div><!--! end of .container -->
+		</div><!--! end of #main -->
+
    
    <!-- footer -->
    <div id="footer">
      <div id="footerContent" class="box">
-        <ul>
-   	    <?php foreach($this->data['content_actions'] as $key => $action) {
-   	       ?><li><a href="<?php echo htmlspecialchars($action['href']) ?>"><?php
-   	       echo htmlspecialchars($action['text']) ?></a></li><?php
-   	     } ?>
-       	  <?php if($this->data['lastmod'   ]) { ?><li><?php    $this->html('lastmod')    ?></li><?php } ?>
-   	   </ul>
-       <ul> 
-    	  <?php if($this->data['about'     ]) { ?><li><?php      $this->html('about')      ?></li><?php } ?>
-       </ul>
      </div>
-     <div id="footerLicense">
-       <p class="box">
-         <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">
-           <img src="http://i.creativecommons.org/l/by/3.0/88x31.png" alt="Creative Commons License" style="border:none;" height="31" width="88">
-         </a>
-         Except where otherwise <a class="subfoot" href="/policies#license">noted</a>, content on this site is<br/>
-         licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/" class="subfoot">Creative Commons
-         Attribution 3.0 License</a>
-       </p>
-    </div>
    </div>
+<?php include 'cc-wp/page-footer.php'; ?>
+    </div> <!--! end of #container -->
+<?php include 'cc-wp/footer-codes.php'; ?>
    
- </div>
-
  <?php $this->html('bottomscripts'); /* JS call to runBodyOnloadHook */ ?>
  <?php $this->html('reporttime'); ?>
  <?php if ( $this->data['debug'] ) { ?>
