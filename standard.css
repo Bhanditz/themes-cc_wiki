@@ -1,68 +1,45 @@
-@import url(site.css);
-@import url(page.css);
-
-#globalWrapper {
-	background: #fff url('images/header-bar-thin.png') repeat-x top left;
+h1 {
+    line-height: 44px;
 }
-
-#headerNav {
-	top: 13px;
-}
-
-#headerWrapper {
-	height: 63px;
-}
-#headerLogo { 
-	height: 63px;
-	width: 251px;
-}
-
-#headerLogo {
-	height: 25px;
-	width: 142px;
-}
-
-#headerLogo h1 {
-	position: absolute;
-	height: 35px;
-	width: 142px;
-	background-image: url(images/cc-logo-small.png);
-	margin-top: 0;
-	top: 10px;
-}
-
-#mainContent {
-	margin-top: 100px;
-}
-
 #headerNav ul {
 	padding-top: 17px;
 }
 
 #pageNav {
-	position: absolute;
-	top: -85px;
-	left: 31px;
-	font-size: 0.9em;
-	padding-bottom: 0.125em;
-	border-bottom: 1px solid #e0e0e0;
-	width: 935px;
+        background-color: #fafafa;
+        border: 1px solid #eee;
+	    font-size: 0.9em;
+        padding: 10px 10px 5px 10px;
+        margin: 10px 0;
+	    width: 97.5%;
+        text-align: left;
+}
+
+ul#preftoc {
+    margin: 8px 0 12px 0;
+    padding: 8px 0 8px 8px;
+    background-color: #fafafa;
 }
 
 #pageNav ul {
-	float: left;
-/*	clear: both;*/
+    display: inline-block;
 	list-style-type: none;
 	padding: 0 0 0.35em 16px;
 	margin: 0;
 }
 
-#pageNav ul li {
+li.selected {
+    text-decoration: underline;
+}
+
+#pageNav ul li,
+ul#preftoc li {
 	display: inline;
 	padding-right: 1em;
 }
 
-#pageNav, #pageNav a {
+#pageNav, #pageNav a,
+#preftoc, #preftoc a {
 	color: #505050;
 }
 
@@ -84,7 +61,6 @@
 
 #title {
 	padding-right: 5px;
-	padding-left: 31px;
 }
 #title h2 {
 	margin-right: 200px !important;
@@ -105,7 +81,6 @@
 #title .sideitem #searchsubmit	{}
 
 #title .sideitem span {
-	font-size: 50%;
 }
 
 #toc {
@@ -129,11 +104,100 @@
 	margin-top: 0;
 }
 
+.editsection {
+    clear: right;
+    font-size: 80%;
+}
+
 #toc li.toclevel-2, #toc li.toclevel-3, #toc li.toclevel-4 {
 	margin-left: 1em !important;
 }
 
 .noToc {
-	width: 800px !important;
-	padding-right: 0 !important;
+}
+
+#footmeta {
+    display: block;
+    background-color: #fefefe;
+    padding: 14px 0 0 0;
+    margin: 2% 0 1% 0;
+    list-style: none;
+    list-style-type: none;
+    clear: both;
+
+}
+
+#footmeta li {
+    padding: 0 10px 0 0;
+    margin: 0;
+    display: inline;
+}
+    
+
+textarea#wpTextbox1 {
+    width: 100%;
+}
+
+.page textarea {
+    width: 100%;
+    margin: 8px 0;
+}
+
+#editform {
+    width: 99%;
+}
+
+#toolbar {
+    margin-top: 12px;
+}
+
+label {
+    float: none;
+}
+
+.editOptions input#wpSummary {
+    width: 100%;
+}
+
+table th, table td {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+body.ltr td.mw-label {
+    text-align: left;
+    width: 30%;
+}
+
+td.mw-label {
+    vertical-align: inherit;
+}
+
+input#showlinkedto {
+    margin-left: 4px;
+}
+
+input#mw-ilsearch,
+input {
+    margin: 2px 0;
+}
+
+input#search {
+    margin: 0;
+}
+
+.mw-specialpage-summary {
+    padding-bottom: 8px;
+}
+
+.rcoptions {
+    line-height: 16px;
+}
+
+#pagehistory li.selected {
+    border: none;
+}
+
+li.selected {
+    text-decoration: none;
 }
