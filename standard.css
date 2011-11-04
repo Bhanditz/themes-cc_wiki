@@ -109,7 +109,7 @@
 }
 
 #toc {
-	position: absolute;
+	float: right;
 	top: 1em;
 	right: 0px;
 	width: 230px;
