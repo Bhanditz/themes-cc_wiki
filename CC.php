@@ -81,6 +81,7 @@ class CC extends QuickTemplate {
     }
     include 'cc-wp/meta.php';
     include 'cc-wp/header-doctype.php';
+    // var_dump($this);
 ?>
 <html <?php
 	foreach($this->data['xhtmlnamespaces'] as $tag => $ns) {
@@ -138,6 +139,7 @@ class CC extends QuickTemplate {
      <!-- toolboxes -->
      <div id="pageNav">
 		   <ul id="t-page">
+    <li id='mainpage'><a href="<?php echo $this->data['nav_urls']['mainpage']['href']; ?>">CC Wiki Home</a></li>
    	<?php		foreach($this->data['content_actions'] as $key => $tab) {
    					echo '
    				 <li id="' . Sanitizer::escapeId( "ca-$key" ) . '"';
@@ -245,12 +247,11 @@ class CC extends QuickTemplate {
 	   <div id="contentSub"><h3 class="category"><?php echo str_replace("&lt; ", "", $this->data['subtitle']) ?></h3></div> 
        <?php
        if ($this->data['title'] != 'Main Page') {
-		 ?><h2><?php /*$this->data['displaytitle']!=""?$this->html('title'):$this->text('title')*/ echo $this->cleanTitle();  ?></h2><?php
+		 ?><h1><?php /*$this->data['displaytitle']!=""?$this->html('title'):$this->text('title')*/ echo $this->cleanTitle();  ?></h1><?php
        } else {
-         ?><h2>Creative Commons Wiki</h2><?php
+         ?><h1>Creative Commons Wiki</h1><?php
        }
        ?>
-       
  		</div>
      
     <!-- page content -->
@@ -269,8 +270,6 @@ class CC extends QuickTemplate {
     </div>
    </div>
 
-
-
        <ul id="footmeta">
     	  <?php if($this->data['about'     ]) { ?><li><?php      $this->html('about')      ?></li><?php } ?>
           <?php
@@ -280,12 +279,6 @@ class CC extends QuickTemplate {
             </div><!--! end of .container -->
 		</div><!--! end of #main -->
 
-   
-   <!-- footer -->
-   <div id="footer">
-     <div id="footerContent" class="box">
-     </div>
-   </div>
 <?php include 'cc-wp/page-footer.php'; ?>
     </div> <!--! end of #container -->
 <?php include 'cc-wp/footer-codes.php'; ?>
