@@ -159,10 +159,14 @@ label {
     width: 100%;
 }
 
+table {
+    border: none;
+}
 table th, table td {
     padding-left: 0;
     padding-right: 0;
 }
+
 
 body.ltr td.mw-label {
     text-align: left;
@@ -201,3 +205,14 @@ input#search {
 li.selected {
     text-decoration: none;
 }
+
+fieldset {
+    width: auto;
+}
+
+.rcoptions fieldset legend,
+fieldset legend {
+   margin-left: 0;
+    width: auto;
+}
+
