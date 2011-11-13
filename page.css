@@ -342,3 +342,14 @@ ul.archives .gadgets { float:right; margin-left: 61%; }
 	float: left;
 	margin: 0;
 }
+
+div.drilldown-filter-label {
+    padding-top: 10px;
+}
+
+div.drilldown-filters {
+    border: 1px solid #AAAAAA;
+    margin-bottom: 8px;
+    margin-top: 10px;
+    padding: 8px;
+}
