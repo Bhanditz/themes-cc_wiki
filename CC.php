@@ -97,8 +97,6 @@ class CC extends QuickTemplate {
 		<!--[if lt IE 7]><script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath') ?>/common/IEFixes.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"></script>
 		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
 
-		<?php print Skin::makeGlobalVariablesScript( $this->data ); ?>
-
     <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.5.2/build/container/assets/skins/sam/container.css" /> 
     <script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/yahoo-dom-event/yahoo-dom-event.js"></script> 
     <script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/animation/animation-min.js"></script> 
@@ -153,11 +151,13 @@ class CC extends QuickTemplate {
    					# give the edit tab an accesskey, because that's fairly su-
    					# perfluous and conflicts with an accesskey (Ctrl-E) often
    					# used for editing in Safari.
-   				 	if( in_array( $action, array( 'edit', 'submit' ) )
-   				 	&& in_array( $key, array( 'edit', 'watch', 'unwatch' ))) {
-   				 		echo $skin->tooltip( "ca-$key" );
+   				 	if (
+						in_array( $action, array( 'edit', 'submit' ) ) &&
+   				 		in_array( $key, array( 'edit', 'watch', 'unwatch' ) )
+					) {
+   				 		echo $this->skin->tooltip( "ca-$key" );
    				 	} else {
-   				 		echo $skin->tooltipAndAccesskey( "ca-$key" );
+						echo Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( "ca-$key" ) );
    				 	}
    				 	echo '>'.htmlspecialchars($tab['text']).'</a></li>';
    				} ?>
@@ -168,7 +168,7 @@ class CC extends QuickTemplate {
    <?php 			foreach($this->data['personal_urls'] as $key => $item) { ?>
    				<li id="<?php echo Sanitizer::escapeId( "pt-$key" ) ?>"<?php
    					if ($item['active']) { ?> class="active"<?php } ?>><a href="<?php
-   				echo htmlspecialchars($item['href']) ?>"<?php echo $skin->tooltipAndAccesskey('pt-'.$key) ?><?php
+   				echo htmlspecialchars($item['href']) ?>"<?php echo Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs('pt-'.$key)) ?><?php
    				if(!empty($item['class'])) { ?> class="<?php
    				echo htmlspecialchars($item['class']) ?>"<?php } ?>><?php
    				echo htmlspecialchars($item['text']) ?></a></li>
@@ -181,23 +181,23 @@ class CC extends QuickTemplate {
          		<?php if($this->data['notspecialpage']) { ?>
          				<li id="t-whatlinkshere"><a href="<?php
          				echo htmlspecialchars($this->data['nav_urls']['whatlinkshere']['href'])
-         				?>"<?php echo $this->skin->tooltipAndAccesskey('t-whatlinkshere') ?>><?php $this->msg('whatlinkshere') ?></a></li>
+         				?>"<?php echo Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs('t-whatlinkshere')) ?>><?php $this->msg('whatlinkshere') ?></a></li>
          <?php
          			if( $this->data['nav_urls']['recentchangeslinked'] ) { ?>
          				<li id="t-recentchangeslinked"><a href="<?php
          				echo htmlspecialchars($this->data['nav_urls']['recentchangeslinked']['href'])
-         				?>"<?php echo $this->skin->tooltipAndAccesskey('t-recentchangeslinked') ?>><?php $this->msg('recentchangeslinked') ?></a></li>
+         				?>"<?php echo Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs('t-recentchangeslinked')) ?>><?php $this->msg('recentchangeslinked') ?></a></li>
          <?php 		}
          		}
          		if(isset($this->data['nav_urls']['trackbacklink'])) { ?>
          			<li id="t-trackbacklink"><a href="<?php
          				echo htmlspecialchars($this->data['nav_urls']['trackbacklink']['href'])
-         				?>"<?php echo $this->skin->tooltipAndAccesskey('t-trackbacklink') ?>><?php $this->msg('trackbacklink') ?></a></li>
+         				?>"<?php echo Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs('t-trackbacklink')) ?>><?php $this->msg('trackbacklink') ?></a></li>
          <?php 	}
          		if($this->data['feeds']) { ?>
          			<li id="feedlinks"><?php foreach($this->data['feeds'] as $key => $feed) {
          					?><span id="<?php echo Sanitizer::escapeId( "feed-$key" ) ?>"><a href="<?php
-         					echo htmlspecialchars($feed['href']) ?>"<?php echo $this->skin->tooltipAndAccesskey('feed-'.$key) ?>><?php echo htmlspecialchars($feed['text'])?></a>&nbsp;</span>
+         					echo htmlspecialchars($feed['href']) ?>"<?php echo Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs('feed-'.$key)) ?>><?php echo htmlspecialchars($feed['text'])?></a>&nbsp;</span>
          					<?php } ?></li><?php
          		}
                 echo '<li><a href="http://wiki.creativecommons.org/Special:Recentchanges">Recent Changes</a></li>';
@@ -205,18 +205,18 @@ class CC extends QuickTemplate {
 
          			if($this->data['nav_urls'][$special]) {
          				?><li id="t-<?php echo $special ?>"><a href="<?php echo htmlspecialchars($this->data['nav_urls'][$special]['href'])
-         				?>"<?php echo $this->skin->tooltipAndAccesskey('t-'.$special) ?>><?php $this->msg($special) ?></a></li>
+         				?>"<?php echo Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs('t-'.$special)) ?>><?php $this->msg($special) ?></a></li>
          <?php		}
          		}
 
          		if(!empty($this->data['nav_urls']['print']['href'])) { ?>
          				<li id="t-print"><a href="<?php echo htmlspecialchars($this->data['nav_urls']['print']['href'])
-         				?>"<?php echo $this->skin->tooltipAndAccesskey('t-print') ?>><?php $this->msg('printableversion') ?></a></li><?php
+         				?>"<?php echo Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs('t-print')); ?>><?php $this->msg('printableversion') ?></a></li><?php
          		}
 
          		if(!empty($this->data['nav_urls']['permalink']['href'])) { ?>
          				<li id="t-permalink"><a href="<?php echo htmlspecialchars($this->data['nav_urls']['permalink']['href'])
-         				?>"<?php echo $this->skin->tooltipAndAccesskey('t-permalink') ?>><?php $this->msg('permalink') ?></a></li><?php
+         				?>"<?php echo Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs('t-permalink')) ?>><?php $this->msg('permalink') ?></a></li><?php
          		} elseif ($this->data['nav_urls']['permalink']['href'] === '') { ?>
          				<li id="t-ispermalink"<?php echo $this->skin->tooltip('t-ispermalink') ?>><?php $this->msg('permalink') ?></li><?php
          		}
@@ -233,7 +233,7 @@ class CC extends QuickTemplate {
          <form method="get" id="searchform" action="<?php $this->text('searchaction') ?>">
            <div>
              <input type="text" 
-              <?php echo $this->skin->tooltipAndAccesskey('search');
+              <?php echo Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs('search'));
      					if( isset( $this->data['search'] ) ) {
      						?> value="<?php $this->text('search') ?>" <?php } ?> 
      				  name="search" id="search" class="inactive" /> <input type="submit" id="searchsubmit" value="Go" />
