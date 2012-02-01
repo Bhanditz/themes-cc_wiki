@@ -20,7 +20,58 @@ if( !defined( 'MEDIAWIKI' ) )
  */
 class SkinCC extends SkinTemplate {
 	/** Using monobook. */
+
+	var $useHeadElement = true;
+
 	function initPage( OutputPage $out ) {
+
+		# Add CC stuff
+		$out->addMeta( 'viewport', 'width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0' );
+		$out->addMeta( 'description', 'Creative Commons licenses provide a flexible range of protections and freedoms for authors, artists, and educators.');
+		$out->addLink( array(
+			'rel' => 'icon',
+			'type' => 'image/x-icon',
+			'title' => 'Icon',
+			'href' => '/skins/cc/cc-wp/favicon.ico'
+		));
+		$out->addLink( array(
+			'rel' => 'apple-touch-icon-precomposed',
+			'size' => '114x114',
+			'href' => '/skins/cc/cc-wp/apple-touch-icon-114x114-precomposed.png'
+		));
+		$out->addLink( array(
+			'rel' => 'apple-touch-icon-precomposed',
+			'size' => '72x72',
+			'href' => '/skins/cc/cc-wp/apple-touch-icon-72x72-precomposed.png'
+		));
+		$out->addLink( array(
+			'rel' => 'apple-touch-icon-precomposed',
+			'href' => '/skins/cc/cc-wp/apple-touch-icon-precomposed.png'
+		));
+		$out->addLink( array(
+			'rel' => 'stylesheet',
+			'href' => '/skins/cc/cc-wp/css/style.css'
+		));
+		$out->addLink( array(
+			'rel' => 'stylesheet',
+			'type' => 'text/css',
+			'href' => 'http://yui.yahooapis.com/2.5.2/build/container/assets/skins/sam/container.css'
+		));
+		$out->addLink( array(
+			'rel' => 'stylesheet',
+			'type' => 'text/css',
+			'href' => '/skins/cc/standard.css'
+		));
+		$out->addHeadItem('cc-main-css', '<!--[if !IE]><link rel="stylesheet" href="/skins/cc/cc-wp/css/style.css"><![endif]-->');
+		$out->addHeadItem('cc-ie8-and-down-css', '<!--[if lt IE 9]><link rel="stylesheet" href="/skins/cc/cc-wp/css/ie8-and-down.css"><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->');
+		$out->addScript('<script src="/skins/cc/cc-wp/js/libs/modernizr-2.0.6.min.js"></script>');
+		$out->addScript('<!--[if lt IE 7]><script type="text/javascript" src="/skins/common/IEFixes.js?303"></script><meta http-equiv="imagetoolbar" content="no" /><![endif]-->');
+		$out->addScript('<script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/yahoo-dom-event/yahoo-dom-event.js"></script>');
+		$out->addScript('<script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/animation/animation-min.js"></script>');
+		$out->addScript('<script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/container/container-min.js"></script>');
+
+		$out->addScript('<script type="text/javascript" src="/skins/common/wikibits.js?303"><!-- wikibits js --></script>');
+
 		parent::initPage( $out );
 		$this->skinname  = 'cc';
 		$this->stylename = 'cc';
@@ -79,54 +130,11 @@ class CC extends QuickTemplate {
             echo 'https';
         }
     }
-    include 'cc-wp/meta.php';
-    include 'cc-wp/header-doctype.php';
-    // var_dump($this);
 ?>
-<html <?php
-	foreach($this->data['xhtmlnamespaces'] as $tag => $ns) {
-		?>xmlns:<?php echo "{$tag}=\"{$ns}\" ";
-	} ?>xml:lang="<?php $this->text('lang') ?>" lang="<?php $this->text('lang') ?>" dir="<?php $this->text('dir') ?>">
-	<head>
-		<meta http-equiv="Content-Type" content="<?php $this->text('mimetype') ?>; charset=<?php $this->text('charset') ?>" />
-        <?php include 'cc-wp/header-common.php'; ?>
-		<?php $this->html('headlinks')?> 
-		<title><?php if ($this->data['title'] != 'Main Page') { echo $this->cleanTitle('pagetitle'); ?><?php } else { ?>Creative Commons Wiki <?php } ?></title>
-		<?php $this->html('csslinks') ?>
 
-		<!--[if lt IE 7]><script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath') ?>/common/IEFixes.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"></script>
-		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+<?php $this->html( 'headelement' ); ?>
 
-    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.5.2/build/container/assets/skins/sam/container.css" /> 
-    <script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/yahoo-dom-event/yahoo-dom-event.js"></script> 
-    <script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/animation/animation-min.js"></script> 
-    <script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/container/container-min.js"></script>
-    
-    <link rel="stylesheet" type="text/css" media="screen" href="<?php $this->text('stylepath') ?>/cc/standard.css" />
-
-		<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath' ) ?>/common/wikibits.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"><!-- wikibits js --></script>
-		<!-- Head Scripts -->
-<?php $this->html('headscripts') ?>
-<?php	if($this->data['jsvarurl']) { ?>
-		<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('jsvarurl') ?>"><!-- site js --></script>
-<?php	} ?>
-<?php	if($this->data['pagecss']) { ?>
-		<style type="text/css"><?php $this->html('pagecss') ?></style>
-<?php	}
-		if($this->data['usercss']) { ?>
-		<style type="text/css"><?php $this->html('usercss') ?></style>
-<?php	}
-		if($this->data['userjs']) { ?>
-		<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('userjs' ) ?>"></script>
-<?php	}
-		if($this->data['userjsprev']) { ?>
-		<script type="<?php $this->text('jsmimetype') ?>"><?php $this->html('userjsprev') ?></script>
-<?php	}
-		if($this->data['trackbackhtml']) print $this->data['trackbackhtml']; ?>
-	</head>
-<body<?php if($this->data['body_ondblclick']) { ?> ondblclick="<?php $this->text('body_ondblclick') ?>"<?php } ?>
 <?php if($this->data['body_onload']) { ?> onload="<?php $this->text('body_onload') ?>"<?php } ?>
- class="yui-skin-sam ccPage mediawiki <?php $this->text('dir') ?> <?php $this->text('pageclass') ?> <?php $this->text('skinnameclass') ?>">
 	<div id="container">
         <?php include 'cc-wp/page-nav.php'; ?>
         <div id="main" role="main">
