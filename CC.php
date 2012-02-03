@@ -72,6 +72,14 @@ class SkinCC extends SkinTemplate {
 
 		$out->addScript('<script type="text/javascript" src="/skins/common/wikibits.js?303"><!-- wikibits js --></script>');
 
+		// The order of these is important, at least the .noConflict call needs to come
+		// before the inclusion of plugins.js and script.js
+		$out->addScript('<script type="text/javascript">var j = $.noConflict();</script>');
+		$out->addScript('<script src="/skins/cc/cc-wp/js/plugins.js"></script>');
+		$out->addScript('<script src="/skins/cc/cc-wp/js/script.js"></script>');
+		
+
+
 		parent::initPage( $out );
 		$this->skinname  = 'cc';
 		$this->stylename = 'cc';
@@ -289,7 +297,7 @@ class CC extends QuickTemplate {
 
 <?php include 'cc-wp/page-footer.php'; ?>
     </div> <!--! end of #container -->
-<?php include 'cc-wp/footer-codes.php'; ?>
+<?php include 'cc-wp/google-analytics.php'; ?>
    
  <?php $this->html('bottomscripts'); /* JS call to runBodyOnloadHook */ ?>
  <?php $this->html('reporttime'); ?>
